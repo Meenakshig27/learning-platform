@@ -7,18 +7,22 @@ function AuthForm({ mode }) {
   const nav = useNavigate()
   const [f, setF] = useState({ name: '', email: '', password: '' })
   const [error, setError] = useState('')
+  const [busy, setBusy] = useState(false)
   const isReg = mode === 'register'
   const set = (k) => (e) => setF({ ...f, [k]: e.target.value })
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault()
+    setError('')
+    setBusy(true)
     try {
       if (isReg) {
         if (f.password.length < 6) throw new Error('Password must be at least 6 characters.')
-        register(f)
-      } else login(f)
+        await register(f)
+      } else await login(f)
       nav('/dashboard')
     } catch (err) { setError(err.message) }
+    setBusy(false)
   }
 
   return (
@@ -29,7 +33,7 @@ function AuthForm({ mode }) {
         <label>Email<input required type="email" value={f.email} onChange={set('email')} /></label>
         <label>Password<input required type="password" value={f.password} onChange={set('password')} /></label>
         {error && <p className="error" role="alert">{error}</p>}
-        <button className="btn lg">{isReg ? 'Create account' : 'Log in'}</button>
+        <button className="btn lg" disabled={busy}>{busy ? 'Please wait…' : isReg ? 'Create account' : 'Log in'}</button>
         <p className="muted">
           {isReg ? <>Already registered? <Link to="/login">Log in</Link></> : <>New here? <Link to="/register">Create an account</Link></>}
         </p>

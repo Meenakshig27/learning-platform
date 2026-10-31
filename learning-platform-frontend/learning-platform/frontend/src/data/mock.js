@@ -9,7 +9,7 @@ const q = (text, options, answer) => ({ text, options, answer })
 
 export const COURSES = [
   {
-    id: 1, title: 'React JS Fundamentals', category: 'Web Development', level: 'Beginner', hours: 8,
+    id: 1, videoId: 'bMknfKXIFA8', title: 'React JS Fundamentals', category: 'Web Development', level: 'Beginner', hours: 8,
     description: 'Build reusable components, manage state with hooks and create single-page apps.',
     lessons: ['What is React?', 'JSX and components', 'Props and state', 'Hooks: useState and useEffect', 'Routing with React Router'],
     quiz: [
@@ -19,7 +19,7 @@ export const COURSES = [
     ],
   },
   {
-    id: 2, title: 'Spring MVC Essentials', category: 'Backend', level: 'Intermediate', hours: 10,
+    id: 2, videoId: '31KTdfRH6nY', title: 'Spring MVC Essentials', category: 'Backend', level: 'Intermediate', hours: 10,
     description: 'Controllers, services, repositories and REST APIs with Spring Boot.',
     lessons: ['Spring Boot setup', 'Controllers and routing', 'Service layer', 'Spring Data JPA', 'Exception handling'],
     quiz: [
@@ -29,7 +29,7 @@ export const COURSES = [
     ],
   },
   {
-    id: 3, title: 'MySQL for Developers', category: 'Database', level: 'Beginner', hours: 6,
+    id: 3, videoId: 'ER8oKX5myE0', title: 'MySQL for Developers', category: 'Database', level: 'Beginner', hours: 6,
     description: 'Design tables, write joins and keep your data consistent.',
     lessons: ['Tables and data types', 'SELECT and filtering', 'Joins', 'Indexes', 'Transactions'],
     quiz: [
@@ -39,7 +39,7 @@ export const COURSES = [
     ],
   },
   {
-    id: 4, title: 'JavaScript Deep Dive', category: 'Web Development', level: 'Intermediate', hours: 9,
+    id: 4, videoId: 'PkZNo7MFNFg', title: 'JavaScript Deep Dive', category: 'Web Development', level: 'Intermediate', hours: 9,
     description: 'Closures, promises, async/await and the event loop explained clearly.',
     lessons: ['Scope and closures', 'Prototypes', 'Promises', 'async / await', 'Event loop'],
     quiz: [
@@ -49,7 +49,7 @@ export const COURSES = [
     ],
   },
   {
-    id: 5, title: 'Git and GitHub Workflow', category: 'Tools', level: 'Beginner', hours: 4,
+    id: 5, videoId: 'RGOj5yH7evk', title: 'Git and GitHub Workflow', category: 'Tools', level: 'Beginner', hours: 4,
     description: 'Branches, pull requests and deployment with GitHub Pages.',
     lessons: ['Commits and history', 'Branching', 'Pull requests', 'Resolving conflicts', 'GitHub Pages'],
     quiz: [
@@ -59,7 +59,7 @@ export const COURSES = [
     ],
   },
   {
-    id: 6, title: 'REST API Design', category: 'Backend', level: 'Intermediate', hours: 5,
+    id: 6, videoId: 'WXsD0ZgxjRw', title: 'REST API Design', category: 'Backend', level: 'Intermediate', hours: 5,
     description: 'Model resources, choose status codes and secure endpoints with JWT.',
     lessons: ['Resources and verbs', 'Status codes', 'Validation', 'JWT authentication', 'Versioning'],
     quiz: [

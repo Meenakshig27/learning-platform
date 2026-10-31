@@ -6,7 +6,7 @@ export default function CourseCard({ course, progress }) {
       <span className={`tag ${course.level.toLowerCase()}`}>{course.level}</span>
       <h3>{course.title}</h3>
       <p>{course.description}</p>
-      <div className="meta">{course.category} · {course.hours} hours · {course.lessons.length} lessons</div>
+      <div className="meta">{course.category} · {course.hours} hours · {course.lessons.length} lessons{course.videoId ? ' · Video course' : ''}</div>
       {progress !== undefined && <ProgressBar value={progress} />}
     </Link>
   )

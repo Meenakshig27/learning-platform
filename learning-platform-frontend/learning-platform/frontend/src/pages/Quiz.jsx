@@ -5,11 +5,12 @@ import { useAuth } from '../context/AuthContext'
 
 export default function Quiz() {
   const { id } = useParams()
-  const { saveScore } = useAuth()
+  const { submitQuiz } = useAuth()
   const [course, setCourse] = useState(null)
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState([])
   const [finished, setFinished] = useState(false)
+  const [error, setError] = useState('')
 
   useEffect(() => { fetchCourse(id).then(setCourse) }, [id])
   if (!course) return <section className="section"><p className="muted">Loading quiz…</p></section>
@@ -17,10 +18,14 @@ export default function Quiz() {
   const qs = course.quiz
   const score = answers.filter((a, i) => a === qs[i].answer).length
 
-  const next = () => {
+  const next = async () => {
     if (step + 1 < qs.length) return setStep(step + 1)
-    saveScore(course.id, score, qs.length)
-    setFinished(true)
+    try {
+      await submitQuiz(course.id, answers, score, qs.length)
+      setFinished(true)
+    } catch (err) {
+      setError(err.response?.data?.message || 'Could not submit the quiz. Please try again.')
+    }
   }
   const restart = () => { setStep(0); setAnswers([]); setFinished(false) }
 
@@ -58,6 +63,7 @@ export default function Quiz() {
         <button key={o} className={`opt ${picked === i ? 'selected' : ''}`}
           onClick={() => { const a = [...answers]; a[step] = i; setAnswers(a) }}>{o}</button>
       ))}
+      {error && <p className="error" role="alert">{error}</p>}
       <button className="btn lg" disabled={picked === undefined} onClick={next}>
         {step + 1 < qs.length ? 'Next question' : 'Submit quiz'}
       </button>

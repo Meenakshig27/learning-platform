@@ -29,6 +29,23 @@ export default function CourseDetail() {
       {isEnrolled ? (
         <>
           <ProgressBar value={pct} />
+          {course.videoId && (
+            <>
+              <h2>Watch the course</h2>
+              <div className="video">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${course.videoId}`}
+                  title={`${course.title} video course`}
+                  allow="accelerometer; encrypted-media; picture-in-picture"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+              <p className="muted">
+                Video not loading? <a href={`https://www.youtube.com/watch?v=${course.videoId}`} target="_blank" rel="noreferrer">Open it on YouTube</a>.
+              </p>
+            </>
+          )}
           <h2>Lessons</h2>
           <ul className="lessons">
             {course.lessons.map((l, i) => (
@@ -44,6 +61,7 @@ export default function CourseDetail() {
         </>
       ) : (
         <>
+          {course.videoId && <p className="note">Includes a free full video course. Enroll to start watching.</p>}
           <h2>What you will cover</h2>
           <ul className="lessons plain">{course.lessons.map((l) => <li key={l}>{l}</li>)}</ul>
           <button className="btn lg" onClick={onEnroll}>{user ? 'Enroll in this course' : 'Log in to enroll'}</button>
